@@ -49,6 +49,18 @@ a{color:inherit}
   background-image:repeating-linear-gradient(90deg, rgba(120,95,55,.045) 0 1px, transparent 1px 3px)}
 main{position:relative;z-index:1}
 
+/* ============ 流动 · 竖排文字底纹（极淡的动态水印） ============ */
+.bg-verse{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;user-select:none;opacity:.045;
+  -webkit-mask-image:radial-gradient(128% 108% at 50% 42%, #000 32%, transparent 88%);
+          mask-image:radial-gradient(128% 108% at 50% 42%, #000 32%, transparent 88%)}
+.bg-verse-track{position:absolute;top:-8vh;left:0;height:116vh;
+  writing-mode:vertical-rl;text-orientation:upright;
+  font-family:var(--ming);font-size:clamp(24px,3vw,52px);letter-spacing:.42em;line-height:2.4;
+  color:var(--ink);white-space:normal;
+  animation:bgVerse 170s linear infinite;will-change:transform}
+@keyframes bgVerse{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.bg-verse-track{animation:none}}
+
 /* ============ 图片 hover · 轻微放大 ============ */
 .ph img{transition:transform .55s var(--ease)}
 .ph:hover img{transform:scale(1.045)}
@@ -117,9 +129,8 @@ main{position:relative;z-index:1}
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:clamp(16px,3.2vh,42px);overflow:hidden;padding:12vh 6vw 9vh;text-align:center;
   background:
-    radial-gradient(130% 85% at 50% -12%, rgba(255,255,255,.62), transparent 56%),
-    radial-gradient(150% 120% at 50% 132%, rgba(120,95,55,.2), transparent 56%),
-    linear-gradient(180deg,var(--paper-2),var(--paper-3))}
+    radial-gradient(130% 85% at 50% -12%, rgba(255,255,255,.55), transparent 56%),
+    radial-gradient(150% 120% at 50% 132%, rgba(120,95,55,.16), transparent 56%)}
 .hero::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
   background-image:radial-gradient(rgba(120,95,55,.16) 1px, transparent 1.5px);background-size:27px 27px}
 .hero-inner{position:relative;z-index:2;color:var(--ink);max-width:820px}
@@ -276,9 +287,8 @@ main{position:relative;z-index:1}
 /* ============ 尾声（纯 CSS 设计，不用图片背景） ============ */
 .finale{position:relative;min-height:100vh;display:grid;place-items:center;overflow:hidden;padding:16vh 7vw;text-align:center;
   background:
-    radial-gradient(130% 90% at 50% -12%, rgba(255,255,255,.62), transparent 56%),
-    radial-gradient(150% 120% at 50% 132%, rgba(120,95,55,.22), transparent 56%),
-    linear-gradient(180deg,var(--paper-2),var(--paper-3))}
+    radial-gradient(130% 90% at 50% -12%, rgba(255,255,255,.5), transparent 56%),
+    radial-gradient(150% 120% at 50% 132%, rgba(120,95,55,.16), transparent 56%)}
 .finale::before{content:"";position:absolute;inset:0;opacity:.55;pointer-events:none;
   background-image:radial-gradient(rgba(120,95,55,.16) 1px, transparent 1.5px);background-size:27px 27px}
 .finale::after{content:"";position:absolute;inset:clamp(16px,3.6vw,52px);border:1px solid rgba(33,28,21,.22);pointer-events:none}
@@ -312,7 +322,7 @@ main{position:relative;z-index:1}
 .btn.ghost:hover{background:var(--ink);color:#F3EBDC;border-color:var(--ink)}
 
 /* ============ 游戏 ============ */
-.game{display:grid;place-items:center;text-align:center;background:linear-gradient(180deg,var(--paper-3),var(--paper-2));padding:16vh 8vw;min-height:100vh}
+.game{display:grid;place-items:center;text-align:center;background:linear-gradient(180deg,rgba(227,213,185,.55),rgba(235,223,201,.42));padding:16vh 8vw;min-height:100vh}
 .game-inner{max-width:620px}
 .game-tag{display:inline-block;margin-bottom:22px;font-size:11px;letter-spacing:.4em;color:var(--zhu);border:1px solid rgba(166,58,43,.4);padding:5px 14px;border-radius:2px}
 .game-pixel{font-family:var(--ming);font-size:clamp(40px,7vw,80px);letter-spacing:.1em;color:var(--ink);text-shadow:4px 4px 0 rgba(166,58,43,.18)}
@@ -384,6 +394,7 @@ img.zoomable{cursor:zoom-in}
 .nav{display:none}
 </style></noscript>
 <div class="bg"></div><div class="weave"></div>
+<div class="bg-verse" aria-hidden="true"><div class="bg-verse-track">双林寺者，原名中都寺，在平遥桥头村。北齐始建，宋改今名。寺中彩塑两千余尊，宋元明清，代代相续。塑者以泥为骨、以彩为衣；眉眼衣纹，皆见温度。千年已过，泥胎犹温。双林寺者，原名中都寺，在平遥桥头村。北齐始建，宋改今名。寺中彩塑两千余尊，宋元明清，代代相续。塑者以泥为骨、以彩为衣；眉眼衣纹，皆见温度。千年已过，泥胎犹温。双林寺者，原名中都寺，在平遥桥头村。北齐始建，宋改今名。寺中彩塑两千余尊，宋元明清，代代相续。塑者以泥为骨、以彩为衣；眉眼衣纹，皆见温度。千年已过，泥胎犹温。双林寺者，原名中都寺，在平遥桥头村。北齐始建，宋改今名。寺中彩塑两千余尊，宋元明清，代代相续。塑者以泥为骨、以彩为衣；眉眼衣纹，皆见温度。千年已过，泥胎犹温。双林寺者，原名中都寺，在平遥桥头村。北齐始建，宋改今名。寺中彩塑两千余尊，宋元明清，代代相续。塑者以泥为骨、以彩为衣；眉眼衣纹，皆见温度。千年已过，泥胎犹温。双林寺者，原名中都寺，在平遥桥头村。北齐始建，宋改今名。寺中彩塑两千余尊，宋元明清，代代相续。塑者以泥为骨、以彩为衣；眉眼衣纹，皆见温度。千年已过，泥胎犹温。双林寺者，原名中都寺，在平遥桥头村。北齐始建，宋改今名。寺中彩塑两千余尊，宋元明清，代代相续。塑者以泥为骨、以彩为衣；眉眼衣纹，皆见温度。千年已过，泥胎犹温。双林寺者，原名中都寺，在平遥桥头村。北齐始建，宋改今名。寺中彩塑两千余尊，宋元明清，代代相续。塑者以泥为骨、以彩为衣；眉眼衣纹，皆见温度。千年已过，泥胎犹温。双林寺者，原名中都寺，在平遥桥头村。北齐始建，宋改今名。寺中彩塑两千余尊，宋元明清，代代相续。塑者以泥为骨、以彩为衣；眉眼衣纹，皆见温度。千年已过，泥胎犹温。双林寺者，原名中都寺，在平遥桥头村。北齐始建，宋改今名。寺中彩塑两千余尊，宋元明清，代代相续。塑者以泥为骨、以彩为衣；眉眼衣纹，皆见温度。千年已过，泥胎犹温。</div></div>
 
 <div id="curtain" aria-hidden="true">
   <div class="curtain-inner"><p>轻触屏幕，推开山门</p></div>
