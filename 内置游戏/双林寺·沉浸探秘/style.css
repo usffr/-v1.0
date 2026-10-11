@@ -37,6 +37,7 @@ html, body {
     background: linear-gradient(180deg, #4a3a29, #362a1d);
     border: 2px solid var(--line);
     border-bottom: none;
+    position: relative; z-index: 100000;
 }
 .hud-title { font-size: 17px; letter-spacing: 4px; color: var(--gold); text-shadow: 0 1px 0 #000; }
 .hud-quest { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--paper-2); }
@@ -54,6 +55,8 @@ html, body {
     font-size: 14px; border-radius: 3px;
 }
 .hud-btns button:hover { background: var(--wood-2); }
+#btn-exit { color: #f0d9a8; border-color: #7a6142; }
+#btn-exit:hover { background: #8b2d22; color: #fff; border-color: #b4642f; }
 
 /* ---------- 舞台 ---------- */
 .stage {

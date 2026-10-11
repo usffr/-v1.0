@@ -386,6 +386,8 @@ function init() {
     $("btn-audio").addEventListener("click", () => {
         if (bgm.paused) { bgm.play(); $("btn-audio").textContent = "🔊"; } else { bgm.pause(); $("btn-audio").textContent = "🔇"; }
     });
+    // 随时退出 · 返回首页
+    $("btn-exit").addEventListener("click", () => { location.href = "../../index.html#game-banner"; });
     $("end-btn").addEventListener("click", () => { $("ending").classList.remove("show"); reset(); });
     $("end-continue").addEventListener("click", () => { $("ending").classList.remove("show"); state.busy = false; $("foot-hint").textContent = "你已集齐所有拓片，可继续自由探索"; checkNear(); });
     $("end-exit").addEventListener("click", () => { $("ending").classList.remove("show"); location.reload(); });
