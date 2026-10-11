@@ -1,0 +1,14 @@
+# ---- 部署不需要的本地/开发文件 ----
+# 源照片（站点用的是 assets/web 里的成品图）
+PNG/
+# 开发与备份
+_shots/
+_backup/
+_tools/
+# 页面草稿（对比用，不属于成品）
+index-b.html
+index-c.html
+# 压缩包与系统文件
+*.zip
+.DS_Store
+Thumbs.db

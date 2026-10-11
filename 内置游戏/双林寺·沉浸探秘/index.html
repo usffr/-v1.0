@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双林古寺 · 泥骨千年</title>
+    <link rel="stylesheet" href="thirdparty/fonts/lxgw-wenkai/package/lxgwwenkai-regular.css">
+    <link rel="stylesheet" href="thirdparty/fonts/lxgw-wenkai/package/lxgwwenkai-bold.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- 顶部 HUD -->
+        <header class="hud">
+            <div class="hud-title">双林古寺 · 泥骨千年</div>
+            <div class="hud-quest">
+                <span>🏺 泥骨拓片</span>
+                <b id="frag-count">0</b><span>/ 6</span>
+                <div class="frag-dots" id="frag-dots"></div>
+            </div>
+            <div class="hud-btns">
+                <button id="btn-help" title="游戏说明">❓</button><button id="btn-index" title="殿宇目录">📖</button>
+                <button id="btn-video" title="总览视频">🎬</button>
+                <button id="btn-audio" title="音乐">🔊</button>
+            </div>
+        </header>
+
+        <!-- 舞台 -->
+        <div class="stage" id="stage">
+            <div class="world" id="world">
+                <img class="ground" id="ground" alt="双林寺像素地图">
+                <!-- 分层物件 / 交互点 / 玩家 由 game.js 注入 -->
+                <div class="player" id="player">
+                    <div class="shadow"></div>
+                    <div class="sprite" id="sprite"></div>
+                </div>
+            </div>
+            <div class="prompt" id="prompt">按 <b>E</b> 查看</div>
+            <div class="vignette"></div>
+        </div>
+
+        <footer class="foot">
+            <span>↑↓←→ 移动</span><i>·</i><span>走近金色光点，按 E 或点击查看</span><i>·</i><span id="foot-hint">集齐六片「泥骨」拓片</span>
+        </footer>
+    </div>
+
+    <!-- 开场 -->
+    <div class="overlay show" id="start-screen">
+        <div class="start">
+            <div class="start-seal">雙林</div>
+            <h1 id="start-title">双林古寺 · 泥骨千年</h1>
+            <p class="start-sub" id="start-sub"></p>
+            <div style="text-align:left;color:#5a4a3a;line-height:1.9;font-size:15px;margin:18px 0;max-width:480px;">
+                <p style="text-align:center;color:#8b6914;font-weight:bold;margin-bottom:12px;">🏮 欢迎来到双林古寺</p>
+                你是一尊被古寺灵识唤醒的青铜鸟尊，请用方向键漫游这座千年古刹，寻找六座大殿里的泥骨拓片。<br><br>
+                🌟 <b>金色光点</b>是可探索殿宇（共6处）<br>
+                🔵 <b>蓝色小光点</b>是隐藏彩蛋（共1处）<br><br>
+                <p style="text-align:center;color:#8b6914;font-weight:bold;">🏺 你将化身——青铜鸟尊</p>
+                <p style="text-align:center;font-size:13px;color:#7a6a5a;">这尊出土于三晋大地的青铜鸟尊，已化形为古寺守灵者，陪你寻访泥骨拓片。</p>
+            </div>
+            <div style="display:flex;gap:12px;justify-content:center;margin-top:16px;flex-wrap:wrap;">
+                <button class="go" id="start-video" style="background:#8b6914;white-space:nowrap;" onclick="openVideoFromWelcome()">🎬 总览视频</button>
+                <button class="go" id="start-bird" style="background:#8b6914;white-space:nowrap;">🏺 鸟尊由来</button>
+                <button class="go" id="start-help" style="background:#6b4c35;white-space:nowrap;">❓ 游戏说明</button>
+                <button class="go" id="start-btn" style="white-space:nowrap;" onclick="document.getElementById('wake-video').style.display='flex'">直接开始探索 →</button>
+                <a class="go" id="start-home" href="../../index.html#game-banner" style="background:#6b4c35;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 对白 -->
+    <div class="overlay" id="dialogue">
+        <div class="dlg" id="dlg">
+            <div class="dlg-sp" id="dlg-sp"></div>
+            <div class="dlg-t" id="dlg-t"></div>
+            <div class="dlg-next" id="dlg-next">▽ 点击继续</div>
+        </div>
+        <span id="dlg-skip" style="position:absolute;right:30px;bottom:20px;color:#d4a76a;text-decoration:underline;cursor:pointer;font-size:15px;">跳过剧情 »</span>
+    </div>
+
+    <!-- 殿宇卡片 -->
+    <div class="overlay" id="card">
+        <div class="card">
+            <button class="x" id="card-close">×</button>
+            <div class="card-head">
+                <span class="card-num" id="card-num"></span>
+                <h2 id="card-title"></h2>
+                <span class="card-tag" id="card-tag"></span>
+            </div>
+            <div class="card-gallery" id="card-gallery"></div>
+            <p class="card-poem" id="card-poem"></p>
+            <p class="card-lore" id="card-lore"></p>
+            <div class="card-frag" id="card-frag"></div>
+            <button id="hall-walk" style="margin-top:12px;padding:10px 20px;background:#6b4c35;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:15px;">🚪 进入殿内漫游</button>
+        </div>
+    </div>
+
+    <!-- 殿内漫游全屏 -->
+    <div class="overlay" id="hall-view">
+        <div style="position:relative;width:100%;height:100%;background:#000;">
+            <img id="hall-img" style="width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity 1.5s;" alt="殿内">
+            <button class="x" id="hall-close" style="position:absolute;top:20px;right:20px;z-index:10;">×</button>
+        </div>
+    </div>
+
+    <!-- 视频 -->
+    <div class="overlay" id="video">
+        <div class="vwrap">
+            <button class="x" id="video-close">×</button>
+            <video id="v" controls>
+                <source src="assets/video/总览视频.mp4" type="video/mp4">
+            </video>
+            <button class="go" id="video-after">看完了，继续 →</button>
+        </div>
+    </div>
+
+    <!-- 鸟尊唤醒视频 -->
+    <div id="wake-video" style="position:fixed;inset:0;z-index:99999;background:#000;display:none;align-items:center;justify-content:center;">
+        <video id="wake" style="max-width:100%;max-height:100%;" playsinline>
+            <source src="wake.mp4" type="video/mp4">
+        </video>
+        <button id="wake-play" style="position:absolute;z-index:10;padding:16px 32px;font-size:18px;background:rgba(139,105,20,0.9);color:#fff;border:none;border-radius:8px;cursor:pointer;">▶ 播放鸟尊唤醒</button>
+        <button id="wake-skip" style="position:absolute;right:20px;bottom:20px;z-index:10;padding:8px 16px;font-size:14px;background:rgba(0,0,0,0.6);color:#d4a76a;border:1px solid #d4a76a;border-radius:6px;cursor:pointer;display:none;">跳过 »</button>
+    </div>
+
+    <!-- 结局 -->
+    <div class="overlay" id="ending">
+        <div class="end">
+            <h1>探索完成</h1>
+            <p class="end-sub">六片泥骨，一片不少。</p>
+            <div class="end-frags" id="end-frags"></div>
+            <p class="end-credit">塑匠无名，泥骨存年。<br>愿后人见之，如见我。</p>
+            <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px;">
+                <button class="go" id="end-continue" style="background:#6b4c35;">继续探索</button>
+                <button class="go" id="end-btn">重新开始</button>
+                <button class="go" id="end-exit" style="background:#8b6914;">退出到首页</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bgm" src="assets/audio/古寺星辰.mp3" loop preload="auto"></audio>
+
+    <!-- 鸟尊由来 -->
+    <div class="overlay" id="bird-panel">
+        <div class="idx" style="max-width:520px;">
+            <button class="x" id="bird-close">×</button>
+            <h2 class="idx-title">🏺 为什么是青铜鸟尊？</h2>
+            <div style="text-align:left;line-height:2;color:#5a4a3a;font-size:15px;">
+                <p><b>这只鸟，从三千年前飞来。</b></p>
+                <p>鸟尊出土于山西晋国墓地，是西周时期青铜盛酒器。它昂首翘尾、羽翼丰满，是三晋大地最具代表性的青铜文物之一。</p>
+                <br>
+                <p><b>为什么选它当主角？</b></p>
+                <p>双林寺在山西平遥，鸟尊也出土于山西——<b>同为三晋大地的千年文物</b>。</p>
+                <p>鸟尊是青铜铸成的"守者"，双林寺彩塑是泥塑的"守者"。我们让这尊青铜鸟跨越三千年，回到它的故乡古寺，替那些正在风化的彩塑"走一遍"——</p>
+                <p>用青铜的眼睛，看泥塑的千年。</p>
+                <br>
+                <p style="text-align:center;color:#8b6914;">青铜不朽，泥塑有痕。<br>鸟尊走过的路，就是三晋文物的来时路。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 游戏说明 -->
+    <div class="overlay" id="help-panel">
+        <div class="idx" style="max-width:520px;">
+            <button class="x" id="help-close">×</button>
+            <h2 class="idx-title">游戏说明</h2>
+            <div style="text-align:left;line-height:2;color:#5a4a3a;font-size:15px;">
+                <p><b>🎮 操作方式</b></p>
+                <p>↑↓←→ 方向键 / WASD：控制青铜鸟尊移动</p>
+                <p>走近发光点，按 <b>E</b> 或点击鼠标：查看殿宇</p>
+                <br>
+                <p><b>🌟 探索目标</b></p>
+                <p>金色光点 = 可探索殿宇（共6处），每处可获得一枚泥骨拓片</p>
+                <p>蓝色光点 = 隐藏彩蛋（共1处），在院角旧橱里</p>
+                <p>集齐6枚拓片后，<b style="color:#8b6914;font-size:16px;">⭐ 回到山门触发结局 ⭐</b></p>
+                <br>
+                <p><b>🚪 殿内漫游</b></p>
+                <p>殿宇详情弹窗底部有「进入殿内漫游」按钮，点击全屏自动轮播该殿实拍照片</p>
+                <br>
+                <p><b>🎬 其他</b></p>
+                <p>右上角：❓说明 / 📖殿宇目录 / 🎬总览视频 / 🔊音乐开关</p>
+                <p>对话时右下角可点「跳过剧情」</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 殿宇目录 -->
+    <div class="overlay" id="index-panel">
+        <div class="idx">
+            <button class="x" id="index-close">×</button>
+            <h2 class="idx-title">双林寺 · 殿宇一览</h2>
+            <p class="idx-sub">南北中轴 · 两厢诸殿 · 点击条目定位</p>
+            <div class="idx-list" id="idx-list"></div>
+        </div>
+    </div>
+
+    <script src="data/map.js"></script>
+    <script src="data/characters.js"></script>
+    <script src="data/photos.js"></script>
+    <script src="data/halls.js"></script>
+    <script src="data/story.js"></script>
+    <script src="src/game.js"></script>
+</body>
+</html>

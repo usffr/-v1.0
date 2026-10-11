@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="description" content="塑语千年 · 双林寺彩塑精选：从山西平遥双林寺两千余尊彩塑中，精选悬塑、护法金刚、千手千眼观音、殿宇梁枋与人间群像，逐件细读。">
+<title>塑语千年 · 双林寺彩塑数字画廊</title>
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logo-32.png">
+<link rel="apple-touch-icon" href="assets/logo-180.png">
+<style>
+/* ============ 字体（本地子集） ============ */
+@font-face{font-family:"Huiwen-mincho";src:url("assets/fonts/huiwen-mincho.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"ShSerif";src:url("assets/fonts/shs-sc-400.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"ShSerif";src:url("assets/fonts/shs-sc-600.woff2") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"ShSerif";src:url("assets/fonts/shs-sc-700.woff2") format("woff2");font-weight:700;font-display:swap}
+
+:root{
+  --paper:#F3EBDC; --paper-2:#EBDFC9; --paper-3:#E3D5B9;
+  --mount:#E6D7B9; --mount-2:#D7C39D;
+  --ink:#211C15; --ink-2:#574B39; --ink-3:#8C7C63; --ink-4:#A99A80;
+  --zhu:#A63A2B; --zhu-2:#7E281C;
+  --qing:#3C5A67; --lv:#58705F; --jin:#A9853F;
+  --line:rgba(33,28,21,.16); --line-2:rgba(33,28,21,.09);
+  --ming:"Huiwen-mincho","ShSerif",serif;
+  --serif:"ShSerif","Songti SC","SimSun",serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--serif);color:var(--ink);background:var(--paper);line-height:1.9;font-weight:400;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;text-rendering:optimizeLegibility}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:rgba(166,58,43,.18);color:var(--zhu-2)}
+:focus-visible{outline:2px solid var(--zhu);outline-offset:3px}
+h1,h2,h3{font-weight:400;line-height:1.28}
+a{color:inherit}
+.sec{scroll-margin-top:64px}
+
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--paper)}
+.bg::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(130% 90% at 50% -10%, rgba(255,255,255,.55), transparent 55%),
+  radial-gradient(160% 130% at 50% 130%, rgba(120,95,55,.18), transparent 52%)}
+.bg::after{content:"";position:absolute;inset:0;opacity:.22;background-image:var(--grain)}
+.weave{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:repeating-linear-gradient(90deg, rgba(120,95,55,.045) 0 1px, transparent 1px 3px)}
+main{position:relative;z-index:1}
+
+/* ============ 图片 hover · 轻微放大 ============ */
+.ph img{transition:transform .55s var(--ease)}
+.ph:hover img{transform:scale(1.045)}
+
+/* ============ 入场帷幕 ============ */
+#curtain{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#18140e 0%,#0c0906 100%);opacity:1;transition:opacity .8s ease;pointer-events:auto}
+#curtain.done{opacity:0;pointer-events:none}
+.curtain-inner{text-align:center;color:var(--paper-2);font-family:var(--ming);letter-spacing:.3em}
+.curtain-inner p{font-size:13px;animation:breathe 2.4s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.45}50%{opacity:.95}}
+
+/* ============ HUD ============ */
+.hud{position:fixed;top:0;left:0;right:0;z-index:40}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px 26px;background:linear-gradient(180deg,rgba(243,235,220,.95),rgba(243,235,220,.78));
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-2)}
+.hud{transition:transform .45s var(--ease)}
+.hud.hide{transform:translateY(-106%)}
+.brand{display:flex;align-items:center;gap:10px;letter-spacing:.16em;font-size:12px;color:var(--ink-2)}
+.brand-logo{width:24px;height:24px;border-radius:6px;box-shadow:0 3px 9px rgba(120,30,20,.28)}
+.brand .m{font-family:var(--ming);font-size:15px;letter-spacing:.14em;color:var(--ink)}
+.nav{display:flex;gap:16px;flex-wrap:wrap;justify-content:flex-end;font-size:12px;letter-spacing:.2em;color:var(--ink-3)}
+.nav button{padding:2px 0;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+.nav button.on{color:var(--zhu);border-color:var(--zhu)}
+.nav button:hover{color:var(--ink)}
+.top-right{display:flex;align-items:center;gap:18px}
+
+/* ============ 游戏入口 ============ */
+.game-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 15px;border-radius:22px;border:1px solid var(--zhu);color:var(--zhu);
+  font-family:var(--ming);font-size:12.5px;letter-spacing:.14em;text-decoration:none;white-space:nowrap;transition:.3s var(--ease)}
+.game-pill svg{width:15px;height:15px;flex:0 0 auto}
+.game-pill:hover{background:var(--zhu);color:#F7EFDF;border-color:var(--zhu);box-shadow:0 10px 22px -12px rgba(120,30,20,.6)}
+
+/* ============ 背景音乐开关 ============ */
+.bgm{width:34px;height:34px;flex:0 0 auto;display:grid;place-items:center;color:var(--ink-3);border:1px solid var(--line);border-radius:50%;transition:.3s;position:relative;background:none;cursor:pointer}
+.bgm:hover{color:var(--ink);border-color:var(--ink-3)}
+.bgm svg{width:17px;height:17px}
+.bgm.on{color:var(--zhu);border-color:var(--zhu)}
+.bgm .bars{position:absolute;right:-3px;bottom:-3px;display:none;gap:1.5px;align-items:flex-end;height:11px}
+.bgm.on .bars{display:flex}
+.bgm .bars i{width:2px;background:var(--zhu);animation:eq 1s ease-in-out infinite;transform-origin:bottom}
+.bgm .bars i:nth-child(1){height:45%;animation-delay:0s}
+.bgm .bars i:nth-child(2){height:95%;animation-delay:.18s}
+.bgm .bars i:nth-child(3){height:65%;animation-delay:.36s}
+@keyframes eq{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+
+/* ============ 通用排印 ============ */
+.eyebrow{font-family:var(--ming);font-size:clamp(19px,1.9vw,26px);letter-spacing:.22em;color:var(--zhu)}
+.h2{font-family:var(--ming);font-size:clamp(26px,3vw,44px);letter-spacing:.06em;line-height:1.32}
+.lead{font-family:var(--ming);font-size:clamp(19px,2vw,28px);line-height:1.95;color:var(--ink);letter-spacing:.02em}
+.copy{font-size:clamp(14.5px,1.06vw,16.5px);line-height:2.1;color:var(--ink-2);text-align:justify}
+.copy + .copy{margin-top:12px}
+.hl{color:var(--zhu);border-bottom:1px solid rgba(166,58,43,.35)}
+.aside{margin-top:16px;padding:14px 16px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(120,95,55,.05));
+  font-size:13px;line-height:1.9;color:var(--ink-2)}
+.aside b{font-family:var(--ming);color:var(--ink);letter-spacing:.06em}
+
+/* 印章 */
+.seal{display:inline-grid;place-items:center;background:var(--zhu);color:#F7EFDF;border-radius:3px;font-family:var(--ming);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.28),0 3px 8px rgba(120,30,20,.3);position:relative;transform:rotate(-2deg)}
+.seal::before{content:"";position:absolute;inset:3px;border:1px solid rgba(255,255,255,.3);border-radius:1px;opacity:.7}
+.seal.g2{grid-template-columns:1fr 1fr;gap:1px;padding:5px}
+.seal.g2 span{font-size:15px;line-height:1}
+
+/* ============ 卷首 · 章节 3D 轮播 ============ */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:clamp(16px,3.2vh,42px);overflow:hidden;padding:12vh 6vw 9vh;text-align:center;
+  background:
+    radial-gradient(130% 85% at 50% -12%, rgba(255,255,255,.62), transparent 56%),
+    radial-gradient(150% 120% at 50% 132%, rgba(120,95,55,.2), transparent 56%),
+    linear-gradient(180deg,var(--paper-2),var(--paper-3))}
+.hero::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+  background-image:radial-gradient(rgba(120,95,55,.16) 1px, transparent 1.5px);background-size:27px 27px}
+.hero-inner{position:relative;z-index:2;color:var(--ink);max-width:820px}
+.hero-kicker{font-size:12px;letter-spacing:.5em;color:var(--zhu);margin-bottom:16px}
+.hero-title{font-family:var(--ming);font-size:clamp(46px,7.4vw,104px);letter-spacing:.16em;line-height:1.05;color:var(--ink)}
+.hero-title .c{display:inline-block}
+.hero-sub{margin:20px auto 0;font-family:var(--ming);font-size:clamp(13px,1.4vw,18px);letter-spacing:.08em;line-height:2;color:var(--ink-2);max-width:32em}
+.hero-sub .r{color:var(--zhu)}
+.hero-seal{position:absolute;right:6vw;bottom:9vh;z-index:3}
+
+/* 3D 环形轮播 */
+.carousel{position:relative;z-index:2;width:min(100%,1040px);height:clamp(220px,32vh,340px);
+  perspective:1500px;--cw:clamp(150px,19vw,250px);--ch:clamp(112px,14.3vw,188px)}
+.carousel-ring{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
+.ccard{position:absolute;left:calc(var(--cw) / -2);top:calc(var(--ch) / -2);width:var(--cw);height:var(--ch);
+  margin:0;padding:0;border:0;background:none;cursor:pointer;transform-style:preserve-3d;backface-visibility:hidden}
+.ccard-in{display:block;width:100%;height:100%;padding:6px;border:1px solid rgba(33,28,21,.28);background:var(--mount);
+  box-shadow:0 26px 60px -32px rgba(40,26,10,.8);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.ccard img{width:100%;height:100%;object-fit:cover;display:block}
+.ccard b{position:absolute;left:0;right:0;top:100%;margin-top:9px;font-family:var(--ming);font-weight:400;font-size:13px;letter-spacing:.18em;color:var(--ink-2)}
+.ccard:hover .ccard-in,.ccard:focus-visible .ccard-in{transform:scale(1.12) translateZ(50px);box-shadow:0 42px 90px -34px rgba(40,26,10,.9)}
+.ccard:focus-visible{outline:2px solid var(--zhu);outline-offset:6px}
+
+@media (max-width:640px){
+  .carousel{--cw:clamp(130px,40vw,200px);--ch:clamp(98px,30vw,150px);height:clamp(190px,42vw,260px)}
+  .ccard b{font-size:11px}
+}
+
+/* ============ 章 / 进 题 ============ */
+.chapter{padding:16vh 7vw 4vh;max-width:1560px;margin:0 auto}
+.chapter-head{display:grid;grid-template-columns:.72fr 1.28fr;gap:clamp(24px,4vw,72px);align-items:end;border-bottom:1px solid var(--line);padding-bottom:5vh}
+.chapter-no{font-family:var(--ming);font-size:14px;letter-spacing:.5em;color:var(--zhu);margin-bottom:16px}
+.chapter-word{font-family:var(--ming);font-size:clamp(64px,11vh,132px);line-height:.95;color:var(--ink)}
+.chapter-name{margin-top:14px;font-family:var(--ming);font-size:clamp(20px,2.2vw,30px);letter-spacing:.12em}
+.chapter-name .dot{margin:0 .5em;color:var(--zhu)}
+.chapter-copy .lead{margin-bottom:18px}
+
+/* ============ 数据 / 时间轴 / 平面 ============ */
+.wrap{max-width:1560px;margin:0 auto;padding:5vh 7vw}
+.stats{display:flex;flex-wrap:wrap;margin:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats .st{flex:1 1 auto;min-width:110px;padding:16px 18px;border-left:1px solid var(--line-2)}
+.stats .st:first-child{border-left:0;padding-left:0}
+.stats .n{font-family:var(--ming);font-size:clamp(22px,2.4vw,34px);color:var(--zhu);line-height:1.05}
+.stats .n small{font-size:.46em;color:var(--ink-2);margin-left:3px}
+.stats .l{font-size:11.5px;letter-spacing:.18em;color:var(--ink-3);margin-top:6px}
+
+/* ============ 序后 · 游戏横幅 ============ */
+.gbanner{display:block;
+  margin-top:40px;padding:clamp(18px,2.4vw,30px);text-decoration:none;color:inherit;
+  border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(120,95,55,.05));
+  box-shadow:0 30px 70px -52px rgba(60,40,15,.7);transition:.35s var(--ease)}
+.gbanner:hover{border-color:var(--zhu);transform:translateY(-3px);box-shadow:0 42px 84px -50px rgba(60,40,15,.85)}
+.gbanner:focus-visible{outline:2px solid var(--zhu);outline-offset:4px}
+.gb-kicker{font-family:var(--ming);font-size:12px;letter-spacing:.34em;color:var(--zhu)}
+.gb-text h3{font-family:var(--ming);font-size:clamp(21px,2.3vw,31px);letter-spacing:.06em;margin:10px 0 12px}
+.gb-text p{font-size:14px;line-height:2.05;color:var(--ink-2);max-width:44em}
+.gb-btn{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-family:var(--ming);font-size:14px;letter-spacing:.12em;
+  color:var(--zhu);border-bottom:1px solid var(--zhu);padding-bottom:3px;transition:.3s var(--ease)}
+.gb-btn svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+.gbanner:hover .gb-btn svg{transform:translateX(4px)}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,72px);align-items:start}
+.timeline{position:relative;border-left:2px solid rgba(166,58,43,.18);padding-left:26px;display:grid;gap:22px}
+.timeline .fill{position:absolute;left:-2px;top:0;width:2px;height:0;background:linear-gradient(180deg,var(--jin),var(--zhu))}
+.tl{position:relative}
+.tl::before{content:"";position:absolute;left:-33px;top:.55em;width:10px;height:10px;border-radius:50%;background:var(--paper);border:2px solid var(--zhu)}
+.tl .yr{font-family:var(--ming);font-size:14px;letter-spacing:.14em;color:var(--zhu)}
+.tl .tx{font-size:13.5px;line-height:1.9;color:var(--ink-2);margin-top:2px}
+.plan{border:1px solid var(--line);background:linear-gradient(180deg,var(--paper-2),var(--paper));padding:20px}
+.plan svg{width:100%;height:auto;display:block}
+.plan figcaption{margin-top:10px;text-align:center;font-size:12px;letter-spacing:.2em;color:var(--ink-3)}
+.pn{font-family:var(--serif);fill:var(--ink-2);font-size:14px}
+.pn.k{fill:var(--zhu)}
+.pl{font-family:var(--serif);fill:var(--ink-3);font-size:11.5px;letter-spacing:.14em}
+.pbox{fill:rgba(255,255,255,.55);stroke:rgba(33,28,21,.34)}
+.pbox.k{fill:rgba(166,58,43,.1);stroke:var(--zhu)}
+.pbox.cur{fill:rgba(166,58,43,.28);stroke:var(--zhu);stroke-width:2.4}
+
+/* ============ 进 题（三进） ============ */
+.entry{padding:14vh 7vw 1vh;max-width:1560px;margin:0 auto}
+.entry .es{font-size:13px;letter-spacing:.4em;color:var(--zhu)}
+.entry .en{font-family:var(--ming);font-size:clamp(34px,4.6vw,62px);letter-spacing:.14em;margin-top:10px;line-height:1.15}
+.entry .ed{max-width:46em;color:var(--ink-2);font-size:14.5px;line-height:2.05;margin-top:16px;border-top:1px solid var(--line);padding-top:18px}
+
+/* ============ 单殿 ============ */
+.hall{max-width:1560px;margin:0 auto;padding:9vh 7vw 0}
+.hall-head{display:grid;grid-template-columns:.28fr 1fr;gap:clamp(18px,3vw,50px);align-items:start;border-bottom:1px solid var(--line);padding-bottom:3vh;margin-bottom:3.4vh}
+.hall-no{font-family:var(--ming);font-size:clamp(46px,7vw,104px);line-height:.85;color:var(--paper-3);-webkit-text-stroke:1px rgba(166,58,43,.38)}
+.hall-name{font-family:var(--ming);font-size:clamp(30px,3.6vw,52px);letter-spacing:.1em}
+.hall-meta{margin-top:12px;font-size:12.5px;letter-spacing:.16em;color:var(--zhu)}
+.hall-meta span{color:var(--ink-3)}
+.hall-body{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(22px,3vw,56px);align-items:start}
+.hall.flip .hall-body{grid-template-columns:.88fr 1.12fr}
+.hall.flip .hall-media{order:2}
+.hall-media{margin:0;border:1px solid var(--line);background:var(--mount);padding:10px;
+  box-shadow:0 40px 80px -52px rgba(60,40,15,.7),inset 0 1px 0 rgba(255,255,255,.45)}
+.hall-media .ph{aspect-ratio:4/3;overflow:hidden;border:1px solid rgba(33,28,21,.28);background:linear-gradient(180deg,var(--mount-2),var(--mount))}
+.hall-media img{width:100%;height:100%;object-fit:cover;display:block}
+.hall-media figcaption{margin-top:9px;text-align:center;font-size:11.5px;letter-spacing:.16em;color:var(--ink-3)}
+.hall-text .lead{margin-bottom:16px}
+.hall-details{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.hall-details.one{grid-template-columns:minmax(0,680px);justify-content:center}
+.sub-cap{font-family:var(--ming);font-size:clamp(19px,1.9vw,26px);letter-spacing:.2em;color:var(--zhu);margin:34px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.hall-details figure{margin:0;border:1px solid var(--line);background:var(--mount);padding:8px}
+.hall-details .ph{aspect-ratio:3/2;overflow:hidden;border:1px solid rgba(33,28,21,.2);background:linear-gradient(180deg,var(--mount-2),var(--mount))}
+.hall-details.port .ph{aspect-ratio:4/5}
+.hall-details img{width:100%;height:100%;object-fit:cover;display:block}
+.hall-details figcaption{margin-top:6px;text-align:center;font-size:11.5px;letter-spacing:.14em;color:var(--ink-3)}
+
+/* 名品 · 交替图文 */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);align-items:center;margin-top:38px}
+.duo.flip .duo-media{order:2}
+.duo.sm .duo-media{max-width:340px}
+.duo-media{margin:0 auto;max-width:460px;width:100%;justify-self:center;border:1px solid var(--line);background:var(--mount);padding:10px;
+  box-shadow:0 40px 80px -52px rgba(60,40,15,.7),inset 0 1px 0 rgba(255,255,255,.45)}
+.duo-media .ph{overflow:hidden;border:1px solid rgba(33,28,21,.28);background:linear-gradient(180deg,var(--mount-2),var(--mount))}
+.duo-media img{width:100%;height:auto;display:block}
+.duo-media figcaption{margin-top:9px;text-align:center;font-size:11.5px;letter-spacing:.16em;color:var(--ink-3)}
+.duo-text h3{font-family:var(--ming);font-size:clamp(22px,2.4vw,34px);letter-spacing:.06em;margin-bottom:14px}
+.duo-text h3 span{display:block;font-family:var(--serif);font-size:12px;letter-spacing:.24em;color:var(--zhu);margin-top:9px}
+.duo-text p{font-size:clamp(14.5px,1.06vw,16.5px);line-height:2.1;color:var(--ink-2);text-align:justify}
+
+/* 配殿一览 */
+.annex{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.annex .an{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(120,95,55,.05));padding:20px 18px 22px}
+.annex .sn{font-family:var(--ming);font-size:12px;letter-spacing:.24em;color:var(--zhu)}
+.annex .ct{font-family:var(--ming);font-size:19px;margin:9px 0 8px;letter-spacing:.06em}
+.annex .cd{font-size:13px;line-height:1.9;color:var(--ink-2)}
+
+/* ============ 工艺 ============ */
+.flowv{position:relative;margin-top:30px;padding-left:64px}
+.flowv-rail{position:absolute;left:21px;top:12px;bottom:12px;width:2px;background:rgba(33,28,21,.14)}
+.flowv-rail i{display:block;width:100%;height:0;background:linear-gradient(180deg,var(--jin),var(--zhu))}
+.fv{position:relative;display:grid;grid-template-columns:230px 1fr;gap:28px;align-items:center;padding:26px 0}
+.fv + .fv{border-top:1px dashed var(--line-2)}
+.fv-node{position:absolute;left:-64px;top:50%;transform:translateY(-50%);width:44px;height:44px;display:grid;place-items:center;
+  border-radius:50%;background:var(--paper);border:1px solid var(--line);font-family:var(--ming);font-size:15px;color:var(--ink-3);transition:.5s var(--ease)}
+.fv.on .fv-node{background:var(--zhu);border-color:var(--zhu);color:#F7EFDF;box-shadow:0 6px 18px rgba(120,30,20,.28)}
+.fv-img{margin:0;border:1px solid var(--line);background:var(--mount);padding:8px}
+.fv-img img{width:100%;height:auto}
+.fv-txt h3{font-family:var(--ming);font-size:clamp(18px,1.8vw,24px);letter-spacing:.06em;margin-bottom:8px}
+.fv-txt h3 span{font-family:var(--serif);font-size:12px;letter-spacing:.18em;color:var(--zhu);margin-left:12px}
+.fv-txt p{font-size:14px;line-height:2.05;color:var(--ink-2)}
+.flowv-words .fv{grid-template-columns:1fr;gap:0;padding:22px 0}
+.flowv-words .fv-txt{max-width:52em}
+
+/* ============ 岁月 ============ */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.grid3 figure{margin:0;border:1px solid var(--line);background:var(--mount);padding:8px}
+.grid3 .ph{aspect-ratio:3/2;overflow:hidden;border:1px solid rgba(33,28,21,.2);background:linear-gradient(180deg,var(--mount-2),var(--mount))}
+.grid3 img{width:100%;height:100%;object-fit:cover;display:block}
+.grid3 figcaption{margin-top:7px;text-align:center;font-size:11.5px;letter-spacing:.14em;color:var(--ink-3)}
+
+/* ============ 尾声（纯 CSS 设计，不用图片背景） ============ */
+.finale{position:relative;min-height:100vh;display:grid;place-items:center;overflow:hidden;padding:16vh 7vw;text-align:center;
+  background:
+    radial-gradient(130% 90% at 50% -12%, rgba(255,255,255,.62), transparent 56%),
+    radial-gradient(150% 120% at 50% 132%, rgba(120,95,55,.22), transparent 56%),
+    linear-gradient(180deg,var(--paper-2),var(--paper-3))}
+.finale::before{content:"";position:absolute;inset:0;opacity:.55;pointer-events:none;
+  background-image:radial-gradient(rgba(120,95,55,.16) 1px, transparent 1.5px);background-size:27px 27px}
+.finale::after{content:"";position:absolute;inset:clamp(16px,3.6vw,52px);border:1px solid rgba(33,28,21,.22);pointer-events:none}
+.finale-inner{position:relative;z-index:1;max-width:44em}
+.finale-seal{margin:0 auto 26px;font-size:20px;width:72px;height:72px}
+.finale-kicker{color:var(--zhu);letter-spacing:.5em}
+.finale-title{margin:14px 0 20px}
+.finale-copy{color:var(--ink-2);max-width:32em;margin:0 auto}
+.finale-line{margin-top:26px;font-family:var(--ming);font-size:12px;letter-spacing:.34em;color:var(--ink-3)}
+.epi-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+.epi-card .ph{aspect-ratio:1/1;overflow:hidden;border:1px solid rgba(244,236,221,.25);padding:6px;background:rgba(20,15,10,.3)}
+.epi-card .ph img{width:100%;height:100%;object-fit:cover}
+.epi-card .t{margin-top:9px;font-family:var(--ming);font-size:14px;letter-spacing:.04em;color:#F4ECDD}
+.epi-card .s{margin-top:3px;font-size:11.5px;color:rgba(244,236,221,.66);line-height:1.6}
+
+/* ============ 返回顶部（浮动） ============ */
+#to-top-fab{position:fixed;right:22px;bottom:26px;z-index:45;width:46px;height:46px;border-radius:50%;
+  display:grid;place-items:center;background:var(--paper);border:1px solid var(--line);color:var(--ink-2);
+  box-shadow:0 12px 28px -12px rgba(40,26,10,.55);opacity:0;transform:translateY(12px);pointer-events:none;transition:.35s var(--ease)}
+#to-top-fab svg{width:18px;height:18px}
+#to-top-fab.on{opacity:1;transform:none;pointer-events:auto}
+#to-top-fab:hover{background:var(--zhu);color:#F7EFDF;border-color:var(--zhu)}
+.sources{padding:8vh 7vw 12vh;max-width:920px;margin:0 auto;text-align:center}
+.sources h3{font-family:var(--ming);font-size:16px;letter-spacing:.24em;color:var(--ink);margin-bottom:16px}
+.sources p{font-size:12.5px;line-height:2.2;color:var(--ink-3);letter-spacing:.04em}
+.sources .btns{margin-top:26px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:11px 26px;border:1px solid var(--zhu);color:var(--zhu);font-size:13px;letter-spacing:.18em;
+  border-radius:2px;transition:.3s;text-decoration:none;cursor:pointer;background:none}
+.btn:hover{background:var(--zhu);color:#F7EFDF}
+.btn.ghost{border-color:var(--ink-4);color:var(--ink-2)}
+.btn.ghost:hover{background:var(--ink);color:#F3EBDC;border-color:var(--ink)}
+
+/* ============ 游戏 ============ */
+.game{display:grid;place-items:center;text-align:center;background:linear-gradient(180deg,var(--paper-3),var(--paper-2));padding:16vh 8vw;min-height:100vh}
+.game-inner{max-width:620px}
+.game-tag{display:inline-block;margin-bottom:22px;font-size:11px;letter-spacing:.4em;color:var(--zhu);border:1px solid rgba(166,58,43,.4);padding:5px 14px;border-radius:2px}
+.game-pixel{font-family:var(--ming);font-size:clamp(40px,7vw,80px);letter-spacing:.1em;color:var(--ink);text-shadow:4px 4px 0 rgba(166,58,43,.18)}
+.game p{margin-top:18px;color:var(--ink-2);font-size:14px;line-height:2}
+.game .btn{margin-top:26px}
+
+/* ============ 灯箱 ============ */
+img.zoomable{cursor:zoom-in}
+#lb{position:fixed;inset:0;z-index:80;display:none;background:rgba(14,11,8,.95);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#lb.on{display:flex;flex-direction:column;align-items:center;justify-content:center}
+#lb .stage{position:relative;max-width:94vw;display:flex;flex-direction:column;align-items:center}
+#lb img{max-width:94vw;max-height:80vh;width:auto;height:auto;object-fit:contain;
+  border:1px solid rgba(244,236,221,.22);box-shadow:0 30px 80px -30px rgba(0,0,0,.9)}
+#lb .cap{margin-top:16px;color:rgba(244,236,221,.86);font-size:13px;letter-spacing:.14em;text-align:center}
+#lb .x{position:absolute;top:16px;right:22px;color:#F4ECDD;font-size:34px;line-height:1;cursor:pointer;opacity:.8}
+#lb .x:hover{opacity:1}
+#lb .prev,#lb .next{position:absolute;top:50%;transform:translateY(-50%);color:rgba(244,236,221,.55);
+  font-size:44px;line-height:1;cursor:pointer;user-select:none;padding:12px 20px;transition:color .3s}
+#lb .prev:hover,#lb .next:hover{color:#F4ECDD}
+#lb .prev{left:0}#lb .next{right:0}
+@media (max-width:640px){#lb .prev,#lb .next{font-size:32px;padding:8px 10px}}
+
+/* ============ 响应式 ============ */
+@media (max-width:960px){
+  .topbar{padding:12px 16px}
+  .brand .m{font-size:13px}
+  .nav{gap:10px;font-size:11px;letter-spacing:.1em}
+  .chapter{padding:12vh 6vw 3vh}
+  .chapter-head{grid-template-columns:1fr;gap:3vh;align-items:start}
+  .chapter-word{font-size:clamp(56px,16vw,90px)}
+  .entry{padding:11vh 6vw 1vh}
+  .wrap{padding:4vh 6vw}
+  .two{grid-template-columns:1fr;gap:4vh}
+  .hall{padding:7vh 6vw 0}
+  .hall-head{grid-template-columns:.24fr 1fr;gap:16px}
+  .hall-body,.hall.flip .hall-body{grid-template-columns:1fr;gap:26px}
+  .hall.flip .hall-media{order:0}
+  .annex{grid-template-columns:1fr}
+  .hall-details{grid-template-columns:repeat(2,1fr)}
+  .duo{grid-template-columns:1fr;gap:22px}
+  .duo.flip .duo-media{order:0}
+  .grid3{grid-template-columns:1fr 1fr}
+  .stats .st{min-width:44%;padding:14px 14px}
+  .hero{padding:0 6vw 14vh}
+  .hero-seal{display:none}
+  .epi-cards{grid-template-columns:1fr 1fr}
+  .flowv{padding-left:46px}
+  .flowv-rail{left:15px}
+  .fv{grid-template-columns:1fr;gap:14px;padding:22px 0}
+  .fv-node{left:-46px;width:32px;height:32px;font-size:13px}
+}
+@media (max-width:560px){
+  .grid3{grid-template-columns:1fr}
+  .hall-details{grid-template-columns:1fr}
+  .epi-cards{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<noscript><style>
+.count{font-size:0!important}
+.count::after{content:attr(data-to);font-size:clamp(22px,2.4vw,34px)}
+#timeline .fill{height:100%!important}
+.nav{display:none}
+</style></noscript>
+<div class="bg"></div><div class="weave"></div>
+
+<div id="curtain" aria-hidden="true">
+  <div class="curtain-inner"><p>轻触屏幕，推开山门</p></div>
+</div>
+
+<div class="hud">
+  <div class="topbar">
+    <div class="brand"><img class="brand-logo" src="assets/logo.png" alt="塑语千年 · 双林寺" width="24" height="24"><span class="m">塑语千年 · 双林寺</span></div>
+    <div class="top-right">
+      <a class="game-pill" href="内置游戏/双林寺·沉浸探秘/index.html" title="进入小游戏">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 12h2.2M8.1 10.9v2.2M15.6 11.6h.01M17.4 13.4h.01"/></svg>
+        <span>小游戏</span>
+      </a>
+      <nav class="nav" id="nav" aria-label="章节导航">
+        <button data-go="s2">序</button>
+        <button data-go="s3">天王殿</button>
+        <button data-go="s4">释迦殿</button>
+        <button data-go="s5">罗汉殿</button>
+        <button data-go="s6">千佛殿</button>
+        <button data-go="s7">菩萨殿</button>
+        <button data-go="s8">大雄宝殿</button>
+        <button data-go="s9">语</button>
+      </nav>
+      <button id="bgm-btn" class="bgm" aria-pressed="true" aria-label="背景音乐开关" title="背景音乐">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 17V6l10-2v11"/>
+          <circle cx="6.5" cy="17.5" r="2.5"/><circle cx="16.5" cy="14.5" r="2.5"/>
+        </svg>
+        <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- ================= 卷首 ================= -->
+  <section class="hero" id="s0">
+    <div class="hero-inner">
+      <p class="hero-kicker">双林寺 · 彩塑精选</p>
+      <h1 class="hero-title"><span class="c">塑</span><span class="c">语</span><span class="c">千</span><span class="c">年</span></h1>
+      <p class="hero-sub">山西平遥 · 桥头村<span class="r"> —— </span>一座古寺，两千余尊彩塑。<br>轻转这些画面，一殿一殿地看过去。</p>
+    </div>
+    <div class="carousel" id="carousel" aria-label="章节导览 · 3D 轮播">
+      <div class="carousel-ring" id="carousel-ring">
+        <button class="ccard" data-go="s2" aria-label="山门"><span class="ccard-in"><img src="assets/web/card-0.jpg" alt="双林寺山门石狮与匾额"></span><b>山门</b></button>
+        <button class="ccard" data-go="s3" aria-label="天王殿"><span class="ccard-in"><img src="assets/web/card-1.jpg" alt="天王殿"></span><b>天王殿</b></button>
+        <button class="ccard" data-go="s4" aria-label="释迦殿"><span class="ccard-in"><img src="assets/web/card-2.jpg" alt="释迦殿主尊"></span><b>释迦殿</b></button>
+        <button class="ccard" data-go="s5" aria-label="罗汉殿"><span class="ccard-in"><img src="assets/web/card-3.jpg" alt="罗汉殿"></span><b>罗汉殿</b></button>
+        <button class="ccard" data-go="s6" aria-label="千佛殿"><span class="ccard-in"><img src="assets/web/card-4.jpg" alt="千佛殿悬塑"></span><b>千佛殿</b></button>
+        <button class="ccard" data-go="s7" aria-label="菩萨殿"><span class="ccard-in"><img src="assets/web/card-5.jpg" alt="千手千眼观音"></span><b>菩萨殿</b></button>
+        <button class="ccard" data-go="s8" aria-label="大雄宝殿"><span class="ccard-in"><img src="assets/web/card-6.jpg" alt="大雄宝殿三身佛"></span><b>大雄宝殿</b></button>
+      </div>
+    </div>
+    <div class="seal g2 hero-seal" style="font-size:22px;width:78px;height:78px" title="引首章"><span>塑</span><span>语</span><span>千</span><span>年</span></div>
+  </section>
+  <!-- ================= 序 ================= -->
+<section class="sec" id="s2">
+    <div class="chapter">
+      <div class="chapter-head">
+        <div>
+          <p class="chapter-no">序 · 缘起</p>
+          <div class="chapter-word">序</div>
+          <p class="chapter-name">一寺之缘</p>
+        </div>
+        <div class="chapter-copy">
+          <p class="lead" data-reveal>先认识这座寺，再认识它的彩塑。</p>
+          <p class="copy" data-reveal>双林寺在山西平遥县城西南六公里的桥头村，原名中都寺。寺院坐北朝南，十座殿堂分列三进院落之中，外墙以夯土包砖，朴素得像一座乡间小堡。1988 年，它被公布为第三批全国重点文物保护单位；1997 年，又随平遥古城一同列入《世界遗产名录》。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="two">
+        <div>
+          <p class="copy" data-reveal>使这座小寺名扬天下的，不是殿宇，而是殿里的彩塑。寺内保存着宋、元、明、清历代彩塑两千余尊，以明代作品为主体，密度之高、保存之好，在汉地寺观中极为罕见，因而有“<span class="hl">东方彩塑艺术宝库</span>”之誉。<span style="color:var(--ink-3)">（塑像总数有 2052 与 2056 两说，姑存其疑。）</span></p>
+          <p class="copy" data-reveal>双林寺的塑像属“寺观彩塑”——它们不在幽深石窟里，就在人们日常礼佛的殿堂之中，就近可看、伸手可及。这使它们比石窟造像多了一层人间的温度：有笑意盈盈的弥勒，有蹙眉张目的护法，也有怀抱孩童的娘娘。</p>
+          <p class="copy" data-reveal>本页不贪多，也不逐殿走过。我们从两千余尊里，精选五组——<span class="hl">悬塑、护法、千手观音、殿宇梁枋、人间与时间</span>——一组一组，把它看透。所谓“塑语千年”，正是想替这些沉默了数百年的泥土，说几句话。</p>
+        </div>
+        <div>
+          <p class="eyebrow" data-reveal>沿革 · 从北齐到今天</p>
+          <div class="timeline" id="timeline" data-reveal>
+            <span class="fill"></span>
+            <div class="tl"><div class="yr">北齐 · 武平二年（571）</div><div class="tx">寺内最古的碑刻记有“重修寺于武平二年”，可知其始建更早，约在北魏。</div></div>
+            <div class="tl"><div class="yr">宋</div><div class="tx">取佛经“双林入灭”之意，改称“双林寺”。</div></div>
+            <div class="tl"><div class="yr">明</div><div class="tx">现存彩塑的主体于此期完成，千佛殿、菩萨殿悬塑满壁。</div></div>
+            <div class="tl"><div class="yr">清</div><div class="tx">殿宇多有重修，彩塑间有补绘。</div></div>
+            <div class="tl"><div class="yr">1988</div><div class="tx">列为第三批全国重点文物保护单位（编号 3-0120-3-068）。</div></div>
+            <div class="tl"><div class="yr">1997</div><div class="tx">随平遥古城列入《世界遗产名录》。</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats" data-reveal>
+        <div class="st"><div class="n"><span class="count" data-to="2000">2000</span><small>余尊</small></div><div class="l">现存历代彩塑</div></div>
+        <div class="st"><div class="n">明</div><div class="l">现存彩塑主体</div></div>
+        <div class="st"><div class="n">三进 · 十殿</div><div class="l">院落格局</div></div>
+      </div>
+
+      <a class="gbanner" id="game-banner" href="内置游戏/双林寺·沉浸探秘/index.html" aria-label="进入小游戏 · 双林古寺 泥骨千年">
+        <div class="gb-text">
+          <span class="gb-kicker">交互 · 泥骨千年</span>
+          <h3>双林古寺 · 泥骨千年</h3>
+          <p>在往下浏览这些彩塑之前，不妨先玩一局——化身青铜鸟尊，漫游六座大殿，集齐六片「泥骨」拓片。</p>
+          <span class="gb-btn">进入小游戏
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
+  <!-- ================= 壹 天王殿 · 护法金刚 ================= -->
+<section class="sec" id="s3">
+    <div class="hall" id="h-hufa">
+      <div class="hall-head">
+        <div class="hall-no">壹</div>
+        <div>
+          <h2 class="hall-name">天王殿 · 护法金刚</h2>
+          <p class="hall-meta">前院 · 山门内第一重　<span>｜ 门口 · 四大金刚 · 明代彩绘泥塑</span></p>
+        </div>
+      </div>
+      <div class="hall-body">
+        <figure class="hall-media">
+          <div class="ph"><img class="zoomable" src="assets/web/hufa-intro.jpg" alt="天王殿外观，檐廊下的四尊金刚" data-cap="天王殿 · 檐廊下的四大金刚" loading="lazy"></div>
+          <figcaption>天王殿 · 檐廊下的四大金刚</figcaption>
+        </figure>
+        <div class="hall-text">
+          <p class="lead" data-reveal>进天王殿，先遇见的不是佛，是四位守门的金刚。</p>
+          <p class="copy" data-reveal>天王殿是山门内的第一重殿，也是中轴上最先迎接来客的一座。它面阔宽展，正中供弥勒、背后立韦驮；而最外一圈的檐廊下，另有四尊金刚一字排开，把守着门口。</p>
+          <p class="copy" data-reveal>这四尊金刚神情各异——愁、怒、沉、威，各不相同，却同是金刚力士的气派：蹙眉、张口、握拳、扭身，通体披甲，高近三米，眉眼以琉璃嵌珠为瞳。民间惯以“<span class="hl">哼</span>”“<span class="hl">哈</span>”称其声口，一放一收。它们不着意礼佛，只专司“挡”：把纷扰拦在门外，把宁静留在殿中。</p>
+          <p class="copy" data-reveal>四尊并列，或怒或沉、或敛或张，把“护法”的神情演成四种不同的力道。下面，一尊一尊地看过去。</p>
+        </div>
+      </div>
+
+      <p class="sub-cap">门 口 · 四 大 金 刚</p>
+
+      <div class="duo sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/guard-1.jpg" alt="愁相金刚" data-cap="愁相金刚" loading="lazy"></div>
+          <figcaption>愁相金刚</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>愁相金刚<span>闭口蓄力</span></h3>
+          <p>双唇紧闭，眉头深锁，身体微微向右扭转，胸腹的肌肉隆起；目光低垂，并不看人。它不作吆喝，也不动声色——“怒”到了极处反成凝重，力气全蓄在肩背之间，是引而不发、闭口蓄力的一尊。</p>
+        </div>
+      </div>
+
+      <div class="duo flip sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/guard-2.jpg" alt="怒相金刚" data-cap="怒相金刚" loading="lazy"></div>
+          <figcaption>怒相金刚　“哈”</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>怒相金刚<span>张口呵斥</span></h3>
+          <p>动势最强的一尊：嘴巴大张，作呵斥呐喊之状，一臂抬起、拳头紧握，整个身体都在往外“顶”。若说金刚各有声口，它便是那一声痛快淋漓的“<span class="hl">哈</span>”。明代匠人把喊到极致的一瞬凝在泥里——张开的嘴、绷起的颈筋、扬起的拳，都成了定格的雷声。</p>
+        </div>
+      </div>
+
+      <div class="duo sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/guard-3.jpg" alt="沉相金刚" data-cap="沉相金刚" loading="lazy"></div>
+          <figcaption>沉相金刚</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>沉相金刚<span>动而愈沉</span></h3>
+          <p>动静之间偏于“沉”。嘴微微张开，头略向后仰，躯干扭转，浑身的肌肉却绷得极紧：它不出声，也不松懈，像一张被拉满却迟迟不放的弓，自有压得住场子的定力。</p>
+        </div>
+      </div>
+
+      <div class="duo flip sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/guard-4.jpg" alt="威相金刚" data-cap="威相金刚" loading="lazy"></div>
+          <figcaption>威相金刚　“哼”</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>威相金刚<span>扶杵下视</span></h3>
+          <p>气势最向内敛。双唇紧闭，一手扶着金刚杵，目光向下垂视；它不喊、不张，只以沉静的目光俯视来者。“<span class="hl">哼</span>”正是它无声的声口——比呐喊更笃定，比怒目更慑人。守门者不必声色俱厉，威仪自在眉宇之间。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= 贰 释迦殿 ================= -->
+  <section class="sec" id="s4">
+    <div class="hall" id="h-shijia">
+      <div class="hall-head">
+        <div class="hall-no">贰</div>
+        <div>
+          <h2 class="hall-name">释迦殿 · 主尊与胁侍</h2>
+          <p class="hall-meta">前院 · 正中主殿　<span>｜ 释迦牟尼 · 文殊 · 普贤 · 明代彩塑</span></p>
+        </div>
+      </div>
+      <div class="hall-body">
+        <figure class="hall-media">
+          <div class="ph"><img class="zoomable" src="assets/web/sj-intro.jpg" alt="释迦殿主尊释迦牟尼" data-cap="释迦殿 · 主尊释迦牟尼" loading="lazy"></div>
+          <figcaption>释迦殿 · 主尊居中 · 明代彩塑</figcaption>
+        </figure>
+        <div class="hall-text">
+          <p class="lead" data-reveal>一座殿，把释迦牟尼的一生“演”在墙上。</p>
+          <p class="copy" data-reveal>释迦殿在前院正中，是前院的主殿。殿中主尊是释迦牟尼，两侧侍立文殊、普贤二菩萨；而最让人驻足流连的，是四壁的<span class="hl">悬塑</span>。</p>
+          <p class="copy" data-reveal>四壁之上，匠人以悬塑铺开一部“佛传”——从乘象入胎、树下诞生，到成道、说法、涅槃，分作数十组，一层层“挂”满墙面，像一部立体的连环画。二百余尊小像，讲的正是释迦牟尼的一生。</p>
+          <p class="copy" data-reveal>主尊居中、胁侍在侧、群像满壁——一殿之内，便是一整个世界。下面先看主尊，再看两位胁侍。</p>
+        </div>
+      </div>
+
+      <p class="sub-cap">一佛二菩萨</p>
+
+      <div class="duo flip sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/sj-shijia.jpg" alt="释迦牟尼佛" data-cap="释迦牟尼佛" loading="lazy"></div>
+          <figcaption>释迦牟尼佛 · 一殿之主</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>释迦牟尼佛<span>一殿之主</span></h3>
+          <p>主尊释迦牟尼结跏趺坐于莲台之上，一手抬起、一手垂按；面容圆润沉静，双目微垂，身后是层层镂空的背光。作为一殿之主，也是这满壁故事的“主角”，他不张扬，只以一身静气居中而坐。</p>
+          <p>莲花座、背光、手印——每一处都在说佛之“觉”。而满壁的悬塑自他身后铺开，把这位主尊的一生，演成了一圈环绕的连环画。</p>
+        </div>
+      </div>
+
+      <div class="duo sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/sj-wenshu.jpg" alt="文殊菩萨" data-cap="文殊菩萨" loading="lazy"></div>
+          <figcaption>文殊菩萨</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>文殊菩萨<span>智慧第一</span></h3>
+          <p>主尊之侧，文殊菩萨侍立。文殊象征智慧，常与普贤相对、分侍佛之左右；这一尊头戴宝冠、身姿微侧，手中持着法器，面容清秀而沉静。满壁悬塑在身后层层叠起，人与壁塑几乎融成了一体。</p>
+        </div>
+      </div>
+
+      <div class="duo flip sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/sj-puxian.jpg" alt="普贤菩萨" data-cap="普贤菩萨" loading="lazy"></div>
+          <figcaption>普贤菩萨</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>普贤菩萨<span>行愿无边</span></h3>
+          <p>另一侧是普贤菩萨。普贤象征“行”与“愿”——把智慧化为践行；这一尊同样头戴宝冠、衣饰繁复，手中持物、眉眼低垂。文殊表“智”、普贤表“行”，二者相配，正是佛之“悲智双运”的两面。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= 叁 罗汉殿 ================= -->
+  <section class="sec" id="s5">
+    <div class="hall" id="h-luohan">
+      <div class="hall-head">
+        <div class="hall-no">叁</div>
+        <div>
+          <h2 class="hall-name">罗汉殿 · 十八罗汉</h2>
+          <p class="hall-meta">前院 · 东侧　<span>｜ 十八罗汉 · 明代彩塑</span></p>
+        </div>
+      </div>
+      <div class="hall-body">
+        <figure class="hall-media">
+          <div class="ph"><img class="zoomable" src="assets/web/luohan-intro.jpg" alt="罗汉殿殿内一排罗汉" data-cap="罗汉殿 · 十八罗汉（殿内）" loading="lazy"></div>
+          <figcaption>罗汉殿 · 十八罗汉（殿内）</figcaption>
+        </figure>
+        <div class="hall-text">
+          <p class="lead" data-reveal>十六罗汉、十八罗汉，塑尽了人间的神情。</p>
+          <p class="copy" data-reveal>罗汉殿在前院东侧，与对面的地藏殿相对。殿内现存明代彩塑十九尊——十八罗汉依山墙、后檐墙列坐，加上主尊，几近占满一堂。它们接近真人大小，或静或动、或立或坐，神情各异。</p>
+          <p class="copy" data-reveal>罗汉不像菩萨那样庄严端好，而是各有各的年纪与脾气：有的蹙眉深思，有的掀眉大笑，有的侧耳倾听。正是这份“<span class="hl">像人</span>”，让双林寺的罗汉被反复称作“<span class="hl">神品</span>”——明代匠人把世俗的百态，请进了佛殿。</p>
+          <p class="copy" data-reveal>下面挑出几尊，看看他们各自的神情。</p>
+        </div>
+      </div>
+
+      <p class="sub-cap">十八罗汉 · 一殿的神情</p>
+
+      <div class="duo flip sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/luohan-1.jpg" alt="辩经罗汉" data-cap="辩经罗汉" loading="lazy"></div>
+          <figcaption>辩经罗汉</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>辩经罗汉<span>抬指论法</span></h3>
+          <p>一臂抬起、手指向上，像是把话说到这里；身体微微前倾，目光落在前方。罗汉“辩经”，辩的是佛法义理——他不必开口，一个手势，便把那场“论法”定格在了半空。</p>
+        </div>
+      </div>
+
+      <div class="duo sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/luohan-2.jpg" alt="抱猫罗汉" data-cap="抱猫罗汉" loading="lazy"></div>
+          <figcaption>抱猫罗汉</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>抱猫罗汉<span>伏猛为柔</span></h3>
+          <p>怀里抱着一只小猫，一手拢着、一手托着，神情温驯而专注。罗汉常见“降龙伏虎”的题材，这一尊却把“降伏”抱成了怀里的柔软——威猛之外，也有俯身相待的一面。</p>
+        </div>
+      </div>
+
+      <div class="duo flip sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/luohan-3.jpg" alt="瘦骨罗汉" data-cap="瘦骨罗汉" loading="lazy"></div>
+          <figcaption>瘦骨罗汉</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>瘦骨罗汉<span>头陀苦行</span></h3>
+          <p>身形清瘦、肋骨毕现，双手交叠于胸前，头微侧、目半闭。这是“苦行”的相：罗汉以头陀苦修著称，塑像便把这副瘦骨嶙峋、却又沉静自持的样子如实塑出。瘦到极处，反而透出一种定力。</p>
+        </div>
+      </div>
+
+      <div class="duo sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/luohan-4.jpg" alt="笑相罗汉" data-cap="笑相罗汉" loading="lazy"></div>
+          <figcaption>笑相罗汉</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>笑相罗汉<span>眉目里的笑</span></h3>
+          <p>眉梢眼角都带着笑：嘴微启、须微翘，像是刚听见一句有趣的话。十八罗汉里，他大概最好亲近——没有威仪，也不端着，只把一份乐呵写在脸上。</p>
+        </div>
+      </div>
+
+      <div class="duo flip sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/luohan-5.jpg" alt="风帽罗汉" data-cap="风帽罗汉" loading="lazy"></div>
+          <figcaption>风帽罗汉</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>风帽罗汉<span>静坐如定</span></h3>
+          <p>头戴一顶风帽，把两颊与额角遮去大半，只露出一张沉静的脸。他不出声、不动作，像在山中独坐了很久——一顶帽子，便把他与满堂的热闹隔了开来。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= 肆 千佛殿 · 悬塑 ================= -->
+<section class="sec" id="s6">
+    <div class="hall" id="h-xuansu">
+      <div class="hall-head">
+        <div class="hall-no">肆</div>
+        <div>
+          <h2 class="hall-name">千佛殿 · 悬塑满壁</h2>
+          <p class="hall-meta">中院 · 东厢　<span>｜ 满壁佛国 · 明代彩塑</span></p>
+        </div>
+      </div>
+      <div class="hall-body">
+        <figure class="hall-media">
+          <div class="ph"><img class="zoomable" src="assets/web/xsu-main.jpg" alt="千佛殿内成排的悬塑坐像" data-cap="千佛殿 · 满壁悬塑 · 明代彩塑" loading="lazy"></div>
+          <figcaption>千佛殿 · 满壁悬塑 · 明代彩塑</figcaption>
+        </figure>
+        <div class="hall-text">
+          <p class="lead" data-reveal>一整面墙，就是一座立体的佛国。</p>
+          <p class="copy" data-reveal>千佛殿在中院东厢，坐东朝西，悬山顶，面阔七间，面积约二百八十五平方米。殿内保存明代彩塑<span class="hl">近五百尊</span>，约占全寺总数的四分之一；主像是自在观音，左侧立着那尊更负盛名的韦驮。</p>
+          <p class="copy" data-reveal>最动人的，是四壁与梁枋之间的“<span class="hl">悬塑</span>”。它不是独立摆放的圆雕，而是贴壁而塑、向外出挑的高浮雕群像——佛、菩萨、罗汉、供养人、天部层层相叠，借前遮后，一面墙就像一整个立体的佛国。</p>
+          <p class="copy" data-reveal>“悬”正是它的功夫：内以木骨为筋，缠草麻，外敷泥塑形；一端固定在墙、一端向外悬挑，数百尊小像贴着壁立了几百年而不坠。</p>
+          <p class="copy" data-reveal>排布也讲究——主尊居中，胁侍与群像向两侧、向上下层层围拢，造出一层一层向内的视线；小像虽只巴掌大小，眉目与衣纹仍一丝不苟。远看是满壁生辉，近看，是无数个被认真塑造过的“人”。</p>
+          <p class="copy" data-reveal>满壁悬塑之外，殿中正中立主尊<span class="hl">自在观音</span>、左侧立<span class="hl">韦驮</span>——这是两尊独立的圆雕，也是千佛殿最负盛名的两尊名品，下面单独来看。</p>
+        </div>
+      </div>
+      <p class="sub-cap">殿中名品</p>
+      <div class="duo">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/qf-weituo.jpg" alt="千佛殿韦驮像" data-cap="韦驮 · 全国韦驮之冠" loading="lazy"></div>
+          <figcaption>韦驮 · 蓄势而立</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>韦驮<span>全国韦驮之冠</span></h3>
+          <p>自在观音的左侧，立着千佛殿、乃至整个双林寺最负盛名的一尊像——韦驮。韦驮是佛教的护法神，作武将装束。这尊像高约一米六，全身重心落在左足，躯干却向右夸张地扭去，头亦随势微侧：远看是静立的，近看却通身蓄势，仿佛下一刻便要发劲——故人称“<span class="hl">不动之动</span>”。甲胄的压叠、帛带的飘举、筋肉的起伏，都在这一口气里绷紧。此像年代一般定为明代；民间誉其为“全国韦驮之冠”。</p>
+        </div>
+      </div>
+      <div class="duo flip">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/qf-zizai.jpg" alt="千佛殿自在观音" data-cap="自在观音 · 殿之主尊" loading="lazy"></div>
+          <figcaption>自在观音 · 殿之主尊</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>自在观音<span>殿之主尊</span></h3>
+          <p>千佛殿的主尊是自在观音。她不作端坐莲台的庄严相，而是一足下垂、一臂斜倚地闲坐——“自在”二字便由此而来：观自在，观的是心无挂碍的自在。头戴宝冠，璎珞垂胸，衣袂顺体而下，面容丰润，神情松弛；身后与两侧，悬塑的菩萨、罗汉、供养人层层环列，像把这位“观自在者”围进了一个立体的世界。此像为明代彩塑，具体尺寸未见确切公开数据，姑存其疑。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= 伍 菩萨殿 · 千手千眼观音 ================= -->
+<section class="sec" id="s7">
+    <div class="hall" id="h-guanyin">
+      <div class="hall-head">
+        <div class="hall-no">伍</div>
+        <div>
+          <h2 class="hall-name">菩萨殿 · 千手千眼观音</h2>
+          <p class="hall-meta">中院 · 西厢　<span>｜ 廿六臂 · 明代彩塑</span></p>
+        </div>
+      </div>
+      <div class="hall-body">
+        <figure class="hall-media">
+          <div class="ph"><img class="zoomable" src="assets/web/gy-main.jpg" alt="菩萨殿二十六臂观音" data-cap="菩萨殿 · 千手千眼观音（廿六臂）· 明代彩塑" loading="lazy"></div>
+          <figcaption>菩萨殿 · 千手千眼观音（廿六臂）· 明代彩塑</figcaption>
+        </figure>
+        <div class="hall-text">
+          <p class="lead" data-reveal>二十六只手臂，各有各的渡口。</p>
+          <p class="copy" data-reveal>菩萨殿在大雄宝殿西侧。殿中主尊是<span class="hl">千手千眼观音</span>：头戴宝冠，二十六臂如莲瓣般次第展开，两臂当胸合掌，其余各持法器——轮、伞、花、剑……密而不乱。</p>
+          <p class="copy" data-reveal>“千手”并非真有一千只手。以多臂之相，喻观音以无量方便救度众生；“千眼”则喻其观照世间疾苦、无处不达。手臂与手中所持，既是她的“法门”，也是递给观者的一份清单。</p>
+          <p class="copy" data-reveal>双林寺这尊作廿六臂之相，是“千手”诸种规制中的一种。宝冠、璎珞、臂钏层层装点，指节与手腕的姿态纤细而有力；殿内四周，还环列着数以百计的菩萨悬塑，主像与壁塑相叠，一站进去，便像落入一整个立体的佛国。</p>
+        </div>
+      </div>
+      <p class="sub-cap">手中 · 持物</p>
+      <div class="duo sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/gy-1557.jpg" alt="千手观音手中所持的法器" data-cap="手中 · 持物" loading="lazy"></div>
+          <figcaption>手中 · 持物</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>手中 · 持物<span>一件法器，一道法门</span></h3>
+          <p>千手观音的每一只手，都握着一件不同的法器，或结着不同的手印。它们不是随手捏出来的——哪只手托什么、指节如何屈伸、法器朝向哪一方，都有讲究；一套手组合起来，便是一部看得见的“<span class="hl">法器清单</span>”。</p>
+          <p>常见的有：<span class="hl">法轮</span>（喻佛法常转不息）、莲花（喻清净不染）、宝剑（喻断一切烦恼）、宝珠（喻所求满愿），此外还有净瓶、经卷、宝弓、宝伞、金刚杵……手中所持，其实都是她“渡人”的法门——每一件法器，对应一种救度；所谓“千手”，正是以多臂之相，喻其方便无量。</p>
+          <p>这些手也最难塑：手臂既多、手指又细，稍不留神便会折断。塑时须在细指里埋进筋条作骨，外层再上细泥、敷彩描金，方能既纤细又立得住；眼珠另以琉璃嵌装，光一过便似有真瞳。<span style="color:var(--ink-3)">（具体工艺以馆方说明为准。）</span></p>
+          <p>于是，一尊千手观音，既是礼拜的对象，也是一部“手的百科”——把抽象的“救度”，一一落在了可触可看的器物之上。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= 陆 大雄宝殿 · 三身与接引 ================= -->
+<section class="sec" id="s8">
+    <div class="hall" id="h-daxiong">
+      <div class="hall-head">
+        <div class="hall-no">陆</div>
+        <div>
+          <h2 class="hall-name">大雄宝殿 · 三身与接引</h2>
+          <p class="hall-meta">中院 · 正殿　<span>｜ 三身佛 · 接引佛 · 明代彩塑</span></p>
+        </div>
+      </div>
+
+      <p class="sub-cap">三身佛 · 一佛化三相</p>
+      <div class="hall-body">
+        <figure class="hall-media">
+          <div class="ph"><img class="zoomable" src="assets/web/dx-main.jpg" alt="大雄宝殿内坛，三身佛与接引佛" data-cap="大雄宝殿 · 三身佛 · 一佛化三相" loading="lazy"></div>
+          <figcaption>大雄宝殿 · 三身佛（内坛全景）</figcaption>
+        </figure>
+        <div class="hall-text">
+          <p class="lead" data-reveal>天王殿护法凌厉，大雄宝殿归于沉静。</p>
+          <p class="copy" data-reveal>一殿之中，主尊<span class="hl">三身佛</span>阐释佛之本相，迎门的接引佛俯身渡人——一动一静，正是这座寺精神内核的落脚处。</p>
+          <p class="copy" data-reveal>一佛化三身，诉说佛的三重境界。大雄宝殿内坛供奉三尊坐佛：法身毗卢遮那佛、报身卢舍那佛、应身释迦牟尼佛。三像体量宏大，沉静安坐，衣纹厚重古朴，身后镂空背光繁复华丽。</p>
+          <p class="copy" data-reveal>法身是本体，报身是圆满功德之相，应身是入世度人的化身。三佛同坛，把抽象的佛法，凝塑成殿堂中央肃穆的形体；与天王殿张扬凌厉的护法金刚，形成一动一静的对照。</p>
+        </div>
+      </div>
+
+      <p class="sub-cap">接引佛 · 铁骨渡凡尘</p>
+      <div class="duo flip sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/dx-jieyin.jpg" alt="阿弥陀接引佛立像" data-cap="接引佛 · 铁铸包泥彩塑" loading="lazy"></div>
+          <figcaption>接引佛 · 铁铸包泥彩塑</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>接引佛<span>铁骨渡凡尘</span></h3>
+          <p>铁铸为骨，泥塑为衣，迈步向前接引众生。立于三身佛前方、正对殿门的阿弥陀接引佛，是双林寺极为特殊的<span class="hl">铁铸包泥</span>彩塑：塑像微微前倾，仿佛走出佛坛，奔赴前来的观者。</p>
+          <p>以铁为骨，是这类高大立像得以挺立数百年的关键；外层再敷泥彩绘，既保结构的稳固，又不失泥塑面目的细腻。褪去护法的威慑，这尊立佛带着温柔的迎候——一踏入大殿，便与之迎面相遇。</p>
+        </div>
+      </div>
+
+      <p class="sub-cap">卢舍那佛 · 报身圆满</p>
+      <div class="duo sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/dx-lushena.jpg" alt="卢舍那佛，报身" data-cap="卢舍那佛 · 报身" loading="lazy"></div>
+          <figcaption>卢舍那佛 · 报身</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>卢舍那佛<span>报身圆满</span></h3>
+          <p>“卢舍那”意为光明遍照。三身佛之中，<span class="hl">报身</span>是佛修行圆满、功德所成的“果报之身”——不同于法身的无形无相，报身是向菩萨示现的、庄严华贵的一面。</p>
+          <p>这一尊头戴宝冠、结跏趺坐，双手当胸；身后背光层层镂空，衣纹随坐姿自然垂落。面容丰满而沉静，不靠威仪震慑，只以一身静气，与三佛同坛安坐。</p>
+        </div>
+      </div>
+
+      <p class="sub-cap">胁侍 · 文殊 · 天女 · 胁侍菩萨</p>
+      <div class="duo flip sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/dx-wenshu.jpg" alt="文殊菩萨" data-cap="文殊菩萨" loading="lazy"></div>
+          <figcaption>文殊菩萨</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>文殊菩萨<span>智慧第一</span></h3>
+          <p>坛上三佛之外，另有菩萨环侍，文殊即其一。文殊象征智慧，常与普贤分侍佛之左右；这一尊头戴宝冠、端坐莲台，身后背光镂空繁复。面容不作威严，眉眼低垂而清明——靠的是一身静气，而非声势。</p>
+        </div>
+      </div>
+      <div class="duo sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/dx-tiannv.jpg" alt="供养天女" data-cap="供养天女" loading="lazy"></div>
+          <figcaption>供养天女</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>供养天女<span>佛国的灵动</span></h3>
+          <p>供养天女侍立于佛坛一侧，双手捧物、低眉含笑。花冠高耸而繁复，衣袂与披帛翻卷如风，是庄严佛国里一处灵动的点缀。天女不执威仪，也不作说教，只以一身华饰与笑意，替满坛的沉静添上一点“人”的生气。</p>
+        </div>
+      </div>
+      <div class="duo flip sm">
+        <figure class="duo-media">
+          <div class="ph"><img class="zoomable" src="assets/web/dx-xieshi.jpg" alt="胁侍菩萨" data-cap="胁侍菩萨" loading="lazy"></div>
+          <figcaption>胁侍菩萨</figcaption>
+        </figure>
+        <div class="duo-text">
+          <h3>胁侍菩萨<span>欲言又止的神情</span></h3>
+          <p>佛坛两侧，一位胁侍菩萨立在余荫里。这位菩萨身姿微侧、头部轻转，一臂向外舒展，像是在应答，又像是在等待。衣饰繁密、披帛垂落，眉眼温润含笑——在满坛肃穆的塑像之间，这一种“欲言又止”的神态，最是耐看。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= 尾声 ================= -->
+<section class="sec" id="s9">
+    <div class="finale">
+      <div class="finale-inner">
+        <div class="seal g2 finale-seal" title="塑语千年"><span>塑</span><span>语</span><span>千</span><span>年</span></div>
+        <p class="hero-kicker finale-kicker">尾声 · 语</p>
+        <h2 class="h2 finale-title">等你来看</h2>
+        <p class="copy finale-copy">两千余尊彩塑，沉默了几百年。它们不说话，却把一整个时代的手艺、信仰与人情，都塑进了泥土里。你在这里与它们照过一面，便也算听过一回“塑语千年”。</p>
+        <p class="finale-line">双林寺 · 彩塑精选</p>
+      </div>
+    </div>
+    <div class="sources">
+      <h3>参考来源</h3>
+      <p>      本页精选双林寺彩塑，图文资料综合公开资料与馆方说明整理，存疑处已随文标注。<br>
+      页面全部实拍素材均由作者自摄。<br></p>
+      <div class="btns">
+        <button class="btn" id="to-top">重回卷首</button>
+        <a class="btn ghost" href="内置游戏/双林寺·沉浸探秘/index.html">进入小游戏</a>
+      </div>
+    </div>
+  </section>
+  <button id="to-top-fab" aria-label="返回顶部" title="返回顶部">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M6 11l6-6 6 6"/></svg>
+  </button>
+
+  <!-- ================= 灯箱 ================= -->
+  <div id="lb" aria-hidden="true">
+    <span class="x" data-lb-close aria-label="关闭">×</span>
+    <span class="prev" data-lb-prev aria-label="上一张">‹</span>
+    <span class="next" data-lb-next aria-label="下一张">›</span>
+    <div class="stage"><img id="lb-img" alt=""><div class="cap" id="lb-cap"></div></div>
+  </div>
+
+</main>
+
+<script>
+(function(){
+'use strict';
+var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function goTo(id){
+  var el = document.getElementById(id); if(!el) return;
+  var head = el.querySelector('.hall-head, .chapter-head, .entry, .game-inner') || el;
+  var y = head.getBoundingClientRect().top + window.pageYOffset - 8;
+  window.scrollTo({ top:Math.max(0,y), behavior: reduce ? 'auto' : 'smooth' });
+}
+document.querySelectorAll('#nav button').forEach(function(b){ b.addEventListener('click', function(){ goTo(b.dataset.go); }); });
+var totop = document.getElementById('to-top');
+if(totop) totop.addEventListener('click', function(){ goTo('s0'); });
+
+/* ============ 背景音乐（古寺星沉.mp3 · 可开关 · 进游戏即停） ============ */
+(function(){
+  var btn = document.getElementById('bgm-btn'); if(!btn) return;
+  var audio = new Audio('内置游戏/双林寺·沉浸探秘/assets/audio/古寺星沉.mp3');
+  audio.loop = true; audio.preload = 'auto'; audio.volume = 0;
+  var want = false, raf = 0, playing = false;
+  function fade(to, cb){
+    cancelAnimationFrame(raf);
+    var from = audio.volume, t0 = performance.now(), d = 900;
+    (function step(now){
+      var k = Math.min(1, (now - t0) / d);
+      audio.volume = Math.max(0, Math.min(1, from + (to - from) * k));
+      if(k < 1) raf = requestAnimationFrame(step); else if(cb) cb();
+    })(performance.now());
+  }
+  function setUI(on){ btn.classList.toggle('on', on); btn.setAttribute('aria-pressed', String(on)); }
+  function start(){ want = true; setUI(true); audio.play().then(function(){ playing = true; fade(0.5); }).catch(function(){}); }
+  function stop(){ want = false; setUI(false); fade(0, function(){ audio.pause(); }); }
+  btn.addEventListener('click', function(){
+    if(want) stop(); else start();
+    try{ localStorage.setItem('suyuBgm', want ? '1' : '0'); }catch(e){}
+  });
+  // 自动播放：优先直接开始（从游戏返回时同源已有交互，浏览器一般允许）；
+  // 若被拦截，则退回“首次交互时开始”。（用户曾手动关掉则不自动开）
+  var pref = true; try{ pref = localStorage.getItem('suyuBgm') !== '0'; }catch(e){}
+  if(pref){
+    var armed = false;
+    function arm(){
+      if(armed) return; armed = true;
+      var kick = function(){
+        document.removeEventListener('pointerdown', kick);
+        document.removeEventListener('keydown', kick);
+        document.removeEventListener('touchstart', kick);
+        if(!want) start();
+      };
+      document.addEventListener('pointerdown', kick);
+      document.addEventListener('keydown', kick);
+      document.addEventListener('touchstart', kick);
+    }
+    function tryStart(){
+      if(want) return;
+      audio.play().then(function(){ playing = true; want = true; setUI(true); fade(0.5); })
+        .catch(function(){ arm(); });
+    }
+    tryStart();
+    audio.addEventListener('canplay', function(){ if(!want) tryStart(); });
+    setTimeout(function(){ if(!want) tryStart(); }, 700);
+    window.addEventListener('pageshow', function(){ if(!want) tryStart(); });
+  }
+  // 进入游戏时停止网页 BGM
+  document.querySelectorAll('a[href*="内置游戏"]').forEach(function(a){
+    a.addEventListener('click', function(){ if(want) stop(); });
+  });
+})();
+
+/* ============ 导航高亮（IntersectionObserver，无滚动特效） ============ */
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+  function mark(id){ document.querySelectorAll('#nav button').forEach(function(b){ b.classList.toggle('on', b.dataset.go===id); }); }
+  var obs = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ mark(e.target.id); if(window.suyuChime) window.suyuChime(e.target.id); } });
+  }, { rootMargin:'-45% 0px -45% 0px', threshold:0 });
+  ['s2','s3','s4','s5','s6','s7','s8','s9'].forEach(function(id){ var el=document.getElementById(id); if(el) obs.observe(el); });
+})();
+
+/* ============ 顶部栏滚动自动收起 ============ */
+(function(){
+  var hud = document.querySelector('.hud'); if(!hud) return;
+  var last = window.pageYOffset || 0;
+  window.addEventListener('scroll', function(){
+    var y = window.pageYOffset || 0;
+    if(y > 140 && y > last + 3) hud.classList.add('hide');
+    else if(y < last - 3) hud.classList.remove('hide');
+    last = y;
+  }, { passive:true });
+})();
+
+/* ============ 返回顶部（浮动） ============ */
+(function(){
+  var fab = document.getElementById('to-top-fab'); if(!fab) return;
+  var tick=false;
+  window.addEventListener('scroll', function(){
+    if(tick) return; tick=true;
+    requestAnimationFrame(function(){ fab.classList.toggle('on', (window.pageYOffset||0) > 600); tick=false; });
+  }, {passive:true});
+  fab.addEventListener('click', function(){ goTo('s0'); });
+})();
+
+/* ============ 从游戏返回：定位到页面内的锚点（如 #game-banner） ============ */
+(function(){
+  if(!location.hash) return;
+  var target = document.getElementById(location.hash.slice(1)); if(!target) return;
+  function go(){
+    var y = target.getBoundingClientRect().top + window.pageYOffset - 8;
+    if(window.__lenis) window.__lenis.scrollTo(Math.max(0,y), { immediate:true });
+    else window.scrollTo(0, Math.max(0,y));
+  }
+  setTimeout(go, 1200);
+  setTimeout(go, 2600);
+})();
+
+/* ============ 卷首 · 章节 3D 轮播 ============ */
+(function(){
+  var stage=document.getElementById('carousel'); if(!stage) return;
+  var ring=document.getElementById('carousel-ring'); if(!ring) return;
+  var cards=[].slice.call(ring.querySelectorAll('.ccard')); var N=cards.length; if(!N) return;
+  var R=300, angle=0, vel=0.09, hover=false, raf=0;
+  function layout(){
+    var cw=cards[0].offsetWidth || 220;
+    R=Math.round(cw/(2*Math.tan(Math.PI/N))*1.42);
+    cards.forEach(function(c,i){ c.style.transform='rotateY('+(i*360/N)+'deg) translateZ('+R+'px)'; });
+  }
+  function render(){
+    ring.style.transform='rotateY('+(-angle)+'deg)';
+    cards.forEach(function(c,i){
+      var a=(((i*360/N)-angle)%360+540)%360-180;
+      var o=Math.max(0,1-Math.abs(a)/105);
+      c.style.opacity=o.toFixed(3);
+      c.style.pointerEvents=(Math.abs(a)<90)?'auto':'none';
+      c.style.zIndex=String((1000-Math.abs(a))|0);
+    });
+  }
+  function loop(){ if(!hover) angle=(angle+vel)%360; render(); raf=requestAnimationFrame(loop); }
+  layout();
+  if(reduce){ render(); } else { loop(); }
+  window.addEventListener('resize', layout);
+  stage.addEventListener('pointerenter', function(){ hover=true; }, {passive:true});
+  stage.addEventListener('pointerleave', function(){ hover=false; }, {passive:true});
+  cards.forEach(function(c){ c.addEventListener('click', function(){ var id=c.getAttribute('data-go'); if(id) goTo(id); }); });
+})();
+
+/* ============ 入场帷幕（纯 CSS 淡出） ============ */
+(function(){
+  var curtain = document.getElementById('curtain'); if(!curtain) return;
+  function finish(){ curtain.classList.add('done'); setTimeout(function(){ curtain.style.display='none'; }, 900); }
+  // 从游戏返回（带 #锚点）时，直接跳过黑屏帷幕
+  if(reduce || location.hash){ curtain.style.display='none'; return; }
+  setTimeout(finish, 900);
+  curtain.addEventListener('pointerdown', function(){ finish(); }, {once:true});
+})();
+
+/* ============ 灯箱 ============ */
+(function(){
+  var lb=document.getElementById('lb'); if(!lb) return;
+  var img=document.getElementById('lb-img'), cap=document.getElementById('lb-cap');
+  var items=[], idx=0;
+  function collect(){ items=[].slice.call(document.querySelectorAll('.zoomable')); }
+  function open(i){
+    collect(); if(!items.length) return;
+    idx=(i+items.length)%items.length;
+    img.src=items[idx].getAttribute('src');
+    cap.textContent=items[idx].dataset.cap || items[idx].alt || '';
+    lb.classList.add('on'); lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    if(window.__lenis) window.__lenis.stop();
+  }
+  function close(){
+    lb.classList.remove('on'); lb.setAttribute('aria-hidden','true'); img.removeAttribute('src');
+    document.body.style.overflow=''; if(window.__lenis) window.__lenis.start();
+  }
+  document.addEventListener('click', function(e){
+    if(!e.target.closest) return;
+    var z=e.target.closest('.zoomable');
+    if(z){ collect(); e.preventDefault(); open(items.indexOf(z)); return; }
+    if(e.target.closest('[data-lb-close]') || e.target===lb){ close(); return; }
+    if(e.target.closest('[data-lb-prev]')){ open(idx-1); return; }
+    if(e.target.closest('[data-lb-next]')){ open(idx+1); return; }
+  });
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('on')) return;
+    if(e.key==='Escape') close();
+    else if(e.key==='ArrowLeft') open(idx-1);
+    else if(e.key==='ArrowRight') open(idx+1);
+  });
+})();
+
+/* ============ 静态呈现（无滚动联动） ============ */
+document.querySelectorAll('#flowv .fv').forEach(function(el){ el.classList.add('on'); });
+(function(){ var g=document.querySelector('#flowv .flowv-rail i'); if(g) g.style.height='100%'; })();
+(function(){ var f=document.querySelector('#timeline .fill'); if(f) f.style.height='100%'; })();
+})();
+
+</script>
+</body>
+</html>
