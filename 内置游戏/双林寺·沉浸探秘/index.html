@@ -53,15 +53,15 @@
             <p class="start-sub" id="start-sub"></p>
             <div style="text-align:left;color:#5a4a3a;line-height:1.9;font-size:15px;margin:18px 0;max-width:480px;">
                 <p style="text-align:center;color:#8b6914;font-weight:bold;margin-bottom:12px;">🏮 欢迎来到双林古寺</p>
-                你是一尊被古寺灵识唤醒的青铜鸟尊，请用方向键漫游这座千年古刹，寻找六座大殿里的泥骨拓片。<br><br>
+                你是一尊被古寺灵识唤醒的青铜鸮卣，请用方向键漫游这座千年古刹，寻找六座大殿里的泥骨拓片。<br><br>
                 🌟 <b>金色光点</b>是可探索殿宇（共6处）<br>
                 🔵 <b>蓝色小光点</b>是隐藏彩蛋（共1处）<br><br>
-                <p style="text-align:center;color:#8b6914;font-weight:bold;">🏺 你将化身——青铜鸟尊</p>
-                <p style="text-align:center;font-size:13px;color:#7a6a5a;">这尊出土于三晋大地的青铜鸟尊，已化形为古寺守灵者，陪你寻访泥骨拓片。</p>
+                <p style="text-align:center;color:#8b6914;font-weight:bold;">🏺 你将化身——青铜鸮卣</p>
+                <p style="text-align:center;font-size:13px;color:#7a6a5a;">这尊出土于三晋大地的青铜鸮卣，已化形为古寺守灵者，陪你寻访泥骨拓片。</p>
             </div>
             <div style="display:flex;gap:12px;justify-content:center;margin-top:16px;flex-wrap:wrap;">
                 <button class="go" id="start-video" style="background:#8b6914;white-space:nowrap;" onclick="openVideoFromWelcome()">🎬 总览视频</button>
-                <button class="go" id="start-bird" style="background:#8b6914;white-space:nowrap;">🏺 鸟尊由来</button>
+                <button class="go" id="start-bird" style="background:#8b6914;white-space:nowrap;">🏺 鸮卣由来</button>
                 <button class="go" id="start-help" style="background:#6b4c35;white-space:nowrap;">❓ 游戏说明</button>
                 <button class="go" id="start-btn" style="white-space:nowrap;" onclick="document.getElementById('wake-video').style.display='flex'">直接开始探索 →</button>
                 <a class="go" id="start-home" href="../../index.html#game-banner" style="background:#6b4c35;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">🏠 返回首页</a>
@@ -115,12 +115,12 @@
         </div>
     </div>
 
-    <!-- 鸟尊唤醒视频 -->
+    <!-- 鸮卣唤醒视频 -->
     <div id="wake-video" style="position:fixed;inset:0;z-index:99999;background:#000;display:none;align-items:center;justify-content:center;">
         <video id="wake" style="max-width:100%;max-height:100%;" playsinline>
             <source src="wake.mp4" type="video/mp4">
         </video>
-        <button id="wake-play" style="position:absolute;z-index:10;padding:16px 32px;font-size:18px;background:rgba(139,105,20,0.9);color:#fff;border:none;border-radius:8px;cursor:pointer;">▶ 播放鸟尊唤醒</button>
+        <button id="wake-play" style="position:absolute;z-index:10;padding:16px 32px;font-size:18px;background:rgba(139,105,20,0.9);color:#fff;border:none;border-radius:8px;cursor:pointer;">▶ 播放鸮卣唤醒</button>
         <button id="wake-skip" style="position:absolute;right:20px;bottom:20px;z-index:10;padding:8px 16px;font-size:14px;background:rgba(0,0,0,0.6);color:#d4a76a;border:1px solid #d4a76a;border-radius:6px;cursor:pointer;display:none;">跳过 »</button>
     </div>
 
@@ -141,21 +141,21 @@
 
     <audio id="bgm" src="assets/audio/古寺星辰.mp3" loop preload="auto"></audio>
 
-    <!-- 鸟尊由来 -->
+    <!-- 鸮卣由来 -->
     <div class="overlay" id="bird-panel">
         <div class="idx" style="max-width:520px;">
             <button class="x" id="bird-close">×</button>
-            <h2 class="idx-title">🏺 为什么是青铜鸟尊？</h2>
+            <h2 class="idx-title">🏺 为什么是青铜鸮卣？</h2>
             <div style="text-align:left;line-height:2;color:#5a4a3a;font-size:15px;">
-                <p><b>这只鸟，从三千年前飞来。</b></p>
-                <p>鸟尊出土于山西晋国墓地，是西周时期青铜盛酒器。它昂首翘尾、羽翼丰满，是三晋大地最具代表性的青铜文物之一。</p>
+                <p><b>这只鸮，从三千年前飞来。</b></p>
+                <p>鸮卣（xiāo yǒu）出土于山西石楼县二郎坡村，是商代晚期的青铜盛酒器：盖作双鸮（猫头鹰）首，环目尖喙，鼓腹饰羽翼纹，现藏山西博物院。</p>
                 <br>
                 <p><b>为什么选它当主角？</b></p>
-                <p>双林寺在山西平遥，鸟尊也出土于山西——<b>同为三晋大地的千年文物</b>。</p>
-                <p>鸟尊是青铜铸成的"守者"，双林寺彩塑是泥塑的"守者"。我们让这尊青铜鸟跨越三千年，回到它的故乡古寺，替那些正在风化的彩塑"走一遍"——</p>
+                <p>双林寺在山西平遥，鸮卣也出土于山西——<b>同为三晋大地的千年文物</b>。</p>
+                <p>鸮卣是青铜铸成的"守者"，双林寺彩塑是泥塑的"守者"。我们让这尊青铜鸮跨越三千年，回到它的故乡古寺，替那些正在风化的彩塑"走一遍"——</p>
                 <p>用青铜的眼睛，看泥塑的千年。</p>
                 <br>
-                <p style="text-align:center;color:#8b6914;">青铜不朽，泥塑有痕。<br>鸟尊走过的路，就是三晋文物的来时路。</p>
+                <p style="text-align:center;color:#8b6914;">青铜不朽，泥塑有痕。<br>鸮卣走过的路，就是三晋文物的来时路。</p>
             </div>
         </div>
     </div>
@@ -167,7 +167,7 @@
             <h2 class="idx-title">游戏说明</h2>
             <div style="text-align:left;line-height:2;color:#5a4a3a;font-size:15px;">
                 <p><b>🎮 操作方式</b></p>
-                <p>↑↓←→ 方向键：控制青铜鸟尊移动</p>
+                <p>↑↓←→ 方向键：控制青铜鸮卣移动</p>
                 <p>走近发光点，按 <b>E</b> 或点击鼠标：查看殿宇</p>
                 <br>
                 <p><b>🌟 探索目标</b></p>
